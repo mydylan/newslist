@@ -1,10 +1,12 @@
 import { DATA } from './js/data';
-import { NewsList } from './js/newsList';
-import { parse } from './js/parse';
+import parse from './js/parse';
+import NewsList from './js/NewsList';
+import ViewListGenerator from './js/ViewListGenerator';
 
 const items = parse(DATA);
 
 const newsList = new NewsList(items);
 
+const viewList = new ViewListGenerator();
 
-console.log(newsList.setItemsPerPage());
+viewList.render(newsList.setItemsPerPage());

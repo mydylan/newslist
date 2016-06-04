@@ -1,4 +1,4 @@
-export function parse(data) {
+export default function parse(data) {
   let i = 0;
   return data.results.map(item => {
     return {

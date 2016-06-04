@@ -1,4 +1,4 @@
-export class NewsList {
+export default class NewsList {
   constructor(items) {
     this.items = items;
     this.itemsPerPage = 5;
