@@ -5,11 +5,31 @@
 	<title>suitsupply</title>
 </head>
 <body>
-	<h1>suitsupply</h1>
-	<div id="list-container">
-		<div id="list-wrapper">
+	<header>
+		<h1>News</h1>
+		<div class="control-wrapper">
+			<div class="controls">
+				<div class="search-input">
+					<input type="text">Search</input>
+				</div>
+				<div class="filter-button">
+					Filters
+					<span class="caret caret-down"></span>
+				</div>
+			</div>
+			<div class="filters">
+				<div class="filter-from"></div>
+				<div class="separator"></div>
+				<div class="filter-to"></div>
+			</div>
 		</div>
-	</div>
+	</header>
+	<main>
+		<div id="list-container">
+			<div id="list-wrapper"></div>
+		</div>
+	</main>
+	<div id="item-container"></div>
 	<script type="text/javascript" src="main.js"></script>
 </body>
 </html>
