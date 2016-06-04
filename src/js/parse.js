@@ -4,7 +4,8 @@ export function parse(data) {
     return {
       ...item,
       id: i++,
-      publishedDate: new Date(item.publishedDate).getTime()
+      publishedDate: new Date(item.publishedDate).getTime(),
+      searchTitle: item.titleNoFormatting.toLowerCase()
     }
   });
 };
