@@ -5,7 +5,3 @@ import { parse } from './js/parse';
 const items = parse(DATA);
 
 const newsList = new NewsList(items);
-
-
-
-console.log(newsList.search("gop"));

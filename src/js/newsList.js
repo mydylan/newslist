@@ -11,7 +11,9 @@ export class NewsList {
   }
 
   filter(fromDate, toDate) {
-
+    return this.items.filter(item => {
+      return item.date >= fromDate && item.date <= toDate;
+    });
   }
 
   showRelatedNews(state) {
