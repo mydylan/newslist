@@ -6,21 +6,35 @@
 </head>
 <body>
 	<header>
-		<h1>News</h1>
+		<h1>NEWS</h1>
 		<div class="control-wrapper">
 			<div class="controls">
 				<div class="search-input">
 					<input type="text" placeholder="SEARCH">
 				</div>
 				<div class="filter-button">
-					<p>Filters</p>
+					<p>FILTERS</p>
 					<div class="caret"></div>
 				</div>
 			</div>
-			<div class="filters">
-				<div class="filter-from"></div>
-				<div class="separator"></div>
-				<div class="filter-to"></div>
+			<div class="filters-wrapper">
+				<div class="filters">
+					<div class="checkbox">
+						<input id="box" type="checkbox">
+						<label for="box">Without related news</label>
+					</div>
+					<div class="filter-form">
+						<div class="filter-from">
+							<p>FROM</p>
+							<input type="date">
+						</div>
+						<div class="separator"></div>
+						<div class="filter-to">
+							<input type="date">
+							<p>TO</p>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</header>

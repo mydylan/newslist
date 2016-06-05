@@ -20,7 +20,7 @@ export default class App {
 
 
     document.querySelector('.filter-button').addEventListener("click", () => {
-      document.querySelector('.filters').classList.toggle('open');
+      document.querySelector('.filters-wrapper').classList.toggle('open');
       document.querySelector('.caret').classList.toggle('rotate');
     });
   }
