@@ -10,6 +10,18 @@ export default class App {
   }
 
   render() {
-    this.viewList.render(this.itemsList.setItemsPerPage());
+    this.viewList.render(this.itemsList.setItemsPerPage(8));
+
+    // EVENTS
+    document.querySelector('.search-input input').addEventListener('keyup', (e) => {
+      let searchText = e.currentTarget.value;
+      this.viewList.render(this.itemsList.search(searchText));
+    });
+
+
+    document.querySelector('.filter-button').addEventListener("click", () => {
+      document.querySelector('.filters').classList.toggle('open');
+      document.querySelector('.caret').classList.toggle('rotate');
+    });
   }
 }

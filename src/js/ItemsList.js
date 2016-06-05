@@ -1,7 +1,7 @@
 export default class ItemsList {
   constructor(items) {
     this.items = items;
-    this.itemsPerPage = 5;
+    this.itemsPerPage = 8;
 
     this.buildList = (items, itemsPerPage) => {
       let list = [];
