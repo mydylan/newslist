@@ -5,10 +5,15 @@ export default class ViewListGenerator {
 
     this.createTemplate = (list) => {
       let template = list.map(item => {
+        const date = new Date(item.date)
+        const dateText = `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`;
         return (`<div id=${item.id} class='item-wrapper'>
                   <div class='item'>
-                    <div class='icon'>YO</div>
-                    <div class='item-title'>${item.titleNoFormatting}</div>
+                    <div class='icon'></div>
+                    <div class='item-title'>
+                      ${item.titleNoFormatting}
+                      <div class='item-time'>Posted: ${dateText}</div>
+                    </div>
                   </div>
                 </div>`);
       });
