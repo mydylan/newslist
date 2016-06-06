@@ -9,9 +9,9 @@ const getIdOfElement = (target) => {
   return target.id;
 };
 
-const keyHandler = (e, context) => {
+const keyHandler = (e, app) => {
   let searchText = e.currentTarget.value;
-  context.viewList.render(context.itemsList.search(searchText));
+  app.viewList.render(app.itemsList.search(searchText));
 };
 
 const toggleOpen = () => {
@@ -19,19 +19,29 @@ const toggleOpen = () => {
   query('.caret').classList.toggle('rotate');
 };
 
-const openItem = (e, context) => {
+const openItem = (e, app) => {
   const id = getIdOfElement(e.target);
-  context.item.render(id);
+  app.item.render(id);
 }
 
-export default function events(context) {
+export default function events(app) {
   query('.search-input input').addEventListener('keyup', (e) => {
-    keyHandler(e, context);
+    keyHandler(e, app);
   });
 
   query('.filter-button').addEventListener('click', toggleOpen);
 
   query('.list-wrapper').addEventListener('click', (e) => {
-    openItem(e, context);
+    openItem(e, app);
   }, true);
+
+  window.addEventListener('keyup', (e) => {
+    if(e.keyCode === 27) {
+      app.item.destroy();
+    }
+  });
+
+  query('.close').addEventListener('click', () => {
+    app.item.destroy();
+  });
 }

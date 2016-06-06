@@ -14,7 +14,7 @@ export default class App {
 
   render() {
     this.viewList.render(this.itemsList.setItemsPerPage(8));
-    const context = this;
-    events(context);
+    const app = this;
+    events(app);
   }
 }
