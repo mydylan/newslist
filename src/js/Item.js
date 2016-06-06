@@ -1,25 +1,56 @@
 export default class Item {
   constructor(items) {
     this.items = items;
-    this.container = document.querySelector(".item-news");
     this.template = "";
+    this.query = (elem) => {
+      return document.querySelector(elem);
+    };
+    this.container = this.query(".item-news");
+
+    this.dateFormat = (stringDate) => {
+      const date = new Date(stringDate);
+      return `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`;
+    };
 
     this.show = () => {
-      document.querySelector("#item-container").style.display = "flex";
-      document.querySelector('html').style.overflow = "hidden";
+      this.query("#item-container").style.display = "flex";
+      this.query('html').style.overflow = "hidden";
     };
 
     this.hide = () => {
-      document.querySelector("#item-container").style.display = "none";
-      document.querySelector('html').style.overflow = "scroll";
+      this.query("#item-container").style.display = "none";
+      this.query('html').style.overflow = "scroll";
+    };
+
+    this.getRelatedNewsTemplate = (item) => {
+      const isShow = !this.query('#box').checked;
+      if (isShow && item.relatedStories) {
+        let template = item.relatedStories.map(story => {
+          const dateText = this.dateFormat(story.publishedDate);
+          return (`
+            <div class="related-item">
+              <div class="icon"></div>
+              <div class="related-title">
+                <p>${story.title} <a href=${story.unescapedUrl} target="_blank">read more</a></p>
+                <div class="related-post">
+                  <div class="related-date">${dateText}</div>
+                  <div class="related-publisher">${story.publisher}</div>
+                </div>
+              </div>
+            </div>
+            `);
+          });
+          return template.join('');
+      } else {
+        return '';
+      }
     };
 
     this.createTemplate = (id) => {
       const item = this.items.find(item => {
         return item.id === JSON.parse(id);
       });
-      const date = new Date(item.date);
-      const dateText = `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`;
+      const dateText = this.dateFormat(item.date);
       return (`
   			<div class="news">
   				<div class="news-content">
@@ -39,7 +70,7 @@ export default class Item {
   					</div>
   				</div>
   				<div class="related-news">
-
+            ${this.getRelatedNewsTemplate(item)}
   				</div>
   			</div>
       `);

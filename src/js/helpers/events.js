@@ -22,7 +22,7 @@ const toggleOpen = () => {
 const openItem = (e, app) => {
   const id = getIdOfElement(e.target);
   app.item.render(id);
-}
+};
 
 export default function events(app) {
   query('.search-input input').addEventListener('keyup', (e) => {
