@@ -1,6 +1,6 @@
 export default class ViewListGenerator {
   constructor() {
-    this.container = document.getElementById('list-wrapper');
+    this.container = document.querySelector('.list-wrapper');
     this.noFoundTemplate = '<div class="empty">No Found</div>';
 
     this.createTemplate = (list) => {

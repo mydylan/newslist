@@ -19,9 +19,20 @@ export default class App {
     });
 
 
-    document.querySelector('.filter-button').addEventListener("click", () => {
+    document.querySelector('.filter-button').addEventListener('click', () => {
       document.querySelector('.filters-wrapper').classList.toggle('open');
       document.querySelector('.caret').classList.toggle('rotate');
     });
+
+    const getIdOfElement = (target) => {
+      while (target.id === "") {
+        target = target.parentElement;
+      }
+      return target;
+    };
+
+    document.querySelector('.list-wrapper').addEventListener('click', (e) => {
+      const id = getIdOfElement(e.target);
+    }, true);
   }
 }
