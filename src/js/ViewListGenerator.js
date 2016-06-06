@@ -5,7 +5,7 @@ export default class ViewListGenerator {
 
     this.createTemplate = (list) => {
       let template = list.map(item => {
-        const date = new Date(item.date)
+        const date = new Date(item.date);
         const dateText = `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`;
         return (`<div id=${item.id} class='item-wrapper'>
                   <div class='item'>
@@ -37,6 +37,6 @@ export default class ViewListGenerator {
   render(list) {
     this.list = list;
     this.destroy();
-    this.template()
+    this.template();
   }
 }
