@@ -14,9 +14,9 @@ const keyHandler = (e, app) => {
   app.viewList.render(app.itemsList.search(searchText));
 };
 
-const toggleOpen = () => {
-  query('.filters-wrapper').classList.toggle('open');
-  query('.caret').classList.toggle('rotate');
+const toggleOpen = (dropdown, caret) => {
+  query(dropdown).classList.toggle('open');
+  query(caret).classList.toggle('rotate');
 };
 
 const openItem = (e, app) => {
@@ -41,7 +41,9 @@ export default function events(app) {
     keyHandler(e, app);
   });
 
-  query('.filter-button').addEventListener('click', toggleOpen);
+  query('.filter-button').addEventListener('click', () => {
+    toggleOpen('.filters-wrapper', '.filter-button .caret');
+  });
 
   query('#from-date').addEventListener('change', (e) => {
     fromDate = new Date(e.currentTarget.value).getTime();
@@ -65,5 +67,9 @@ export default function events(app) {
 
   query('.close').addEventListener('click', () => {
     app.item.destroy();
+  });
+
+  query('.page-dropdown').addEventListener('click', ()=> {
+    toggleOpen('.page-menu', '.page-dropdown .caret');
   });
 }
