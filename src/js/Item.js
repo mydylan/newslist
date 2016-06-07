@@ -9,7 +9,7 @@ export default class Item {
 
     this.dateFormat = (stringDate) => {
       const date = new Date(stringDate);
-      return `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`;
+      return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
     };
 
     this.show = () => {

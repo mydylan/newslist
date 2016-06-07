@@ -24,12 +24,34 @@ const openItem = (e, app) => {
   app.item.render(id);
 };
 
+const dateFilterHandler = (fromDate, toDate, app) => {
+  if (fromDate >= toDate) {
+    alert("Start Date bigger than End Date");
+    return ;
+  }
+  if (fromDate && toDate) {
+    app.viewList.render(app.itemsList.filter(fromDate, toDate));
+  }
+};
+
 export default function events(app) {
+  let fromDate, toDate;
+
   query('.search-input input').addEventListener('keyup', (e) => {
     keyHandler(e, app);
   });
 
   query('.filter-button').addEventListener('click', toggleOpen);
+
+  query('#from-date').addEventListener('change', (e) => {
+    fromDate = new Date(e.currentTarget.value).getTime();
+    dateFilterHandler(fromDate, toDate, app);
+  });
+
+  query('#to-date').addEventListener('change', (e) => {
+    toDate = new Date(e.currentTarget.value).getTime();
+    dateFilterHandler(fromDate, toDate, app);
+  });
 
   query('.list-wrapper').addEventListener('click', (e) => {
     openItem(e, app);

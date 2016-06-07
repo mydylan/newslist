@@ -6,7 +6,7 @@ export default class ViewListGenerator {
     this.createTemplate = (list) => {
       let template = list.map(item => {
         const date = new Date(item.date);
-        const dateText = `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`;
+        const dateText = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
         return (`<div id=${item.id} class='item-wrapper'>
                   <div class='item'>
                     <div class='icon'></div>
