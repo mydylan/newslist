@@ -13,12 +13,15 @@ export default class Item {
     };
 
     this.show = () => {
-      this.query("#item-container").style.display = "flex";
+      // const height = this.query('')
+      this.query("#item-container").classList.add('show');
+      // this.query("#item-container").style.height = height;
       this.query('html').style.overflow = "hidden";
+      window.scrollTo(0, 0);
     };
 
     this.hide = () => {
-      this.query("#item-container").style.display = "none";
+      this.query("#item-container").classList.remove('show');
       this.query('html').style.overflow = "scroll";
     };
 
@@ -63,7 +66,7 @@ export default class Item {
   					</div>
   					<div class="news-text">
   						<div class="news-title">${item.title}</div>
-  						<div class="news-text">
+  						<div class="news-text-content">
   							${item.content}
   							<a href=${item.unescapedUrl} target="_blank">read more</a>
   						</div>

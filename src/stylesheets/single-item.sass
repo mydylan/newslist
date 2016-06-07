@@ -1,14 +1,14 @@
 @import 'constants'
 #item-container
   display: none
-  justify-content: center
-  align-items: center
-  position: fixed
+  position: absolute
   width: 100%
   height: 100%
   top: 0
   left: 0
   z-index: 4
+  &.show
+    display: block
   &::before
     content: ''
     display: block
@@ -23,8 +23,8 @@
 
   .item-news
     position: relative
-    width: 80%
-    margin: -40px auto 0
+    width: 70%
+    margin: 40px auto 0
     padding: 60px 20px
     background-color: white
     z-index: 3
@@ -33,11 +33,12 @@
     position: fixed
     width: 50px
     height: 50px
-    top: 40px
+    top: 32px
     right: 40px
     z-index: 3
     cursor: pointer
-    &::before
+    &::before,
+    &::after
       content: ''
       display: block
       position: absolute
@@ -48,14 +49,6 @@
       background-color: white
       transform: rotate(45deg)
     &::after
-      content: ''
-      display: block
-      position: absolute
-      top: 25px
-      left: 0
-      width: 100%
-      height: 1px
-      background-color: white
       transform: rotate(-45deg)
 
   .news-content
@@ -68,7 +61,7 @@
       display: block
       width: 100%
       height: 100%
-      min-width: 240px
+      min-width: 220px
 
   .post
     display: flex
@@ -103,9 +96,12 @@
     margin: 0 0 10px 0
 
     .icon
-      width: 30px
+      width: 40px
       height: 30px
       background-size: 30px 30px
+
+  .related-title
+    width: 100%
 
   .related-post
     display: flex
@@ -114,3 +110,40 @@
 
   .related-date
     margin: 0 10px 0 0
+
+@media (min-width: 767px)
+  #item-container
+    min-height: 1024px
+    &::before
+      min-height: 1024px
+
+@media (max-width: 600px)
+  #item-container
+    position: absolute
+    min-height: 1200px
+
+    .news-content
+      display: block
+
+    .news-title
+      margin: 20px 0
+
+    .news-text-content
+      text-align: justify
+
+    .item-news
+      top: 50px
+      margin: 0 auto
+
+    .close
+      position: absolute
+      width: 30px
+      height: 30px
+      top: 10px
+      right: 10px
+      &::before,
+      &::after
+        top: 15px
+
+    .related-news
+      margin: 20px auto 0

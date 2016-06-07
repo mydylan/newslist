@@ -11,10 +11,16 @@ html
   width: 100%
 
 body
-  width: 100%
   font-family: sans-serif
   color: $grey
+  padding: 0 30px
 
 h1
   font-size: 56px
   font-weight: 400
+
+@media (max-width: 600px)
+  html
+    overflow: scroll !important
+  body
+    padding: 0 15px
