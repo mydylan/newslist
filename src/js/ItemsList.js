@@ -1,8 +1,10 @@
 export default class ItemsList {
   constructor(items) {
     this.items = items;
+    this.itemsOnThePage = items;
     this.itemsPerPage = 3;
     this.currentPage = 0;
+    this.totalPages = 1;
 
     this.buildList = (items, itemsPerPage) => {
       let list = [];
@@ -23,47 +25,57 @@ export default class ItemsList {
   }
 
   search(string) {
-    let items = this.items.filter(item => {
+    this.itemsOnThePage = this.items.filter(item => {
       return item.searchTitle.search(string.toLowerCase()) !== -1;
     });
-    return this.buildList(items, this.itemsPerPage);
+    this.setTotalPages();
+    return this.buildList(this.itemsOnThePage, this.itemsPerPage)[this.currentPage];
   }
 
   filter(fromDate, toDate) {
-    let items =  this.items.filter(item => {
+    this.itemsOnThePage =  this.items.filter(item => {
       return item.date >= fromDate && item.date <= toDate;
     });
-    return this.buildList(items, this.itemsPerPage);
+    this.setTotalPages();
+    return this.buildList(this.itemsOnThePage, this.itemsPerPage)[this.currentPage];
   }
 
   setItemsPerPage(itemsPerPage = this.itemsPerPage) {
     this.itemsPerPage = itemsPerPage;
+    this.setTotalPages();
+    return this.buildList(this.items, this.itemsPerPage)[this.currentPage];
   }
 
   getItemsPerPage() {
     return this.itemsPerPage;
   }
 
-  setCurrentPage(page) {
-    this.currentPage = page;
-  }
-
   getCurrentPage() {
     return this.currentPage + 1;
   }
 
+  setCurrentPage(page) {
+    this.currentPage = page;
+  }
+
   getTotalPages() {
-    return Math.ceil(this.items.length/this.itemsPerPage);
+    return this.totalPages;
+  }
+
+  setTotalPages(items = this.itemsOnThePage) {
+    this.totalPages = Math.ceil(items.length/this.itemsPerPage);
   }
 
   getItemsList(itemsPerPage) {
-    return this.buildList(this.items, this.itemsPerPage)[this.currentPage];
+    this.setTotalPages();
+    return this.buildList(this.itemsOnThePage, this.itemsPerPage)[this.currentPage];
   }
 
   getNextPage() {
     if (this.getCurrentPage() !== this.getTotalPages()) {
       this.setCurrentPage(this.currentPage + 1);
-      return this.getItemsList(this.itemsPerPage);
+      this.setTotalPages();
+      return this.getItemsList(this.itemsOnThePage);
     } else {
       return;
     }
@@ -72,7 +84,8 @@ export default class ItemsList {
   getPrevPage() {
     if (this.getCurrentPage() !== 1) {
       this.setCurrentPage(this.currentPage - 1);
-      return this.getItemsList(this.itemsPerPage);
+      this.setTotalPages();
+      return this.getItemsList(this.itemsOnThePage);
     }
   }
 };

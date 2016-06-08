@@ -1,4 +1,4 @@
-import events from './helpers/events';
+import { listEvents } from './helpers/events';
 
 export default class ViewListGenerator {
   constructor(app) {
@@ -6,7 +6,7 @@ export default class ViewListGenerator {
     this.noFoundTemplate = '<div class="empty">No Found</div>';
     this.app = app;
     this.itemsListModel = app.itemsList;
-    this.events = events;
+    this.listEvents = listEvents;
 
     this.getItemList = (list) => {
       let template = list.map(item => {
@@ -34,8 +34,9 @@ export default class ViewListGenerator {
             <div class="caret"></div>
           </div>
           <div class="page-menu">
-            <div>10 per page</div>
-            <div>20 per page</div>
+            <div data-items='3'>3 per page</div>
+            <div data-items='5'>5 per page</div>
+            <div data-items='10'>10 per page</div>
           </div>
         </div>
         <div class="list-wrapper">${this.getItemList(list)}</div>
@@ -72,6 +73,6 @@ export default class ViewListGenerator {
     this.list = list;
     this.destroy();
     this.template();
-    this.events(this.app);
+    this.listEvents(this.app);
   }
 }

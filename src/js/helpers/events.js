@@ -34,7 +34,7 @@ const dateFilterHandler = (fromDate, toDate, app) => {
   }
 };
 
-export default function events(app) {
+export function headerEvents(app) {
   let fromDate, toDate;
 
   query('.search-input input').addEventListener('keyup', (e) => {
@@ -54,7 +54,9 @@ export default function events(app) {
     toDate = new Date(e.currentTarget.value).getTime();
     dateFilterHandler(fromDate, toDate, app);
   });
+}
 
+export function listEvents(app) {
   query('.list-wrapper').addEventListener('click', (e) => {
     openItem(e, app);
   }, true);
@@ -72,6 +74,13 @@ export default function events(app) {
   query('.page-dropdown').addEventListener('click', () => {
     toggleOpen('.page-menu', '.page-dropdown .caret');
   });
+
+  query('.page-menu').addEventListener('click', (e) => {
+    const items = JSON.parse(e.target.dataset.items);
+    if (items) {
+      app.viewList.render(app.itemsList.setItemsPerPage(items));
+    }
+  }, true);
 
   query('.page-next').addEventListener('click', () => {
     const list = app.itemsList.getNextPage();
