@@ -1,6 +1,6 @@
 ## News List App
 
-[Demo]('http://mydylan.github.io')
+[Demo](http://mydylan.github.io)
 
 For local running
 ```
