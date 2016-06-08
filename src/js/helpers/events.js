@@ -21,7 +21,7 @@ const toggleOpen = (dropdown, caret) => {
 
 const openItem = (e, app) => {
   const id = getIdOfElement(e.target);
-  app.item.render(id);
+  app.viewItem.render(id);
 };
 
 const dateFilterHandler = (fromDate, toDate, app) => {
@@ -61,12 +61,12 @@ export default function events(app) {
 
   window.addEventListener('keyup', (e) => {
     if(e.keyCode === 27) {
-      app.item.destroy();
+      app.viewItem.destroy();
     }
   });
 
   query('.close').addEventListener('click', () => {
-    app.item.destroy();
+    app.viewItem.destroy();
   });
 
   query('.page-dropdown').addEventListener('click', ()=> {

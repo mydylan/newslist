@@ -38,6 +38,8 @@ header
       outline: none
       font-size: 26px
       transition: all 0.2s
+      &::-webkit-input-placeholder
+        color: $light-grey
   .filter-button
     display: flex
     justify-content: flex-end
@@ -48,10 +50,10 @@ header
     transition: all 0.2s
     cursor: pointer
     &:hover
-      color: $grey
+      color: $red
       .caret
-        border-top-color: $grey
-        border-bottom-color: $grey
+        border-top-color: $red
+        border-bottom-color: $red
   .caret
     width: 0
     height: 0
@@ -102,7 +104,7 @@ header
     cursor: pointer
     &:hover
       p, input[type=date]
-        color: $grey
+        color: $red
 
     p
       margin: 0 10px 0 0
@@ -128,7 +130,7 @@ header
         position: absolute
         top: 10px
         left: 0px
-        color: $grey
+        color: $red
         transition: all 0.2s
         &:hover
           background-color: transparent
@@ -141,15 +143,16 @@ header
         position: relative
         top: 0
         left: 0
+        color: $red
 
   .separator
     position: relative
     width: 100%
     &:hover
       &::before
-        background-color: $grey
+        background-color: $red
       &::after
-        border-left: 6px solid $grey
+        border-left: 6px solid $red
 
     &::before
       content: ''
@@ -188,7 +191,7 @@ header
     color: $light-grey
     transition: all 0.2s
     &:hover
-      color: $grey
+      color: $red
 
   [type="checkbox"]:checked + label
     color: $grey
@@ -211,7 +214,7 @@ header
     left: 3px
     font-size: 14px
     line-height: 0.8
-    color: $grey
+    color: $red
     transition: all .1s
 
   [type="checkbox"]:not(:checked) + label:after

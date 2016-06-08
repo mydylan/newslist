@@ -1,4 +1,4 @@
-export default class Item {
+export default class ViewItem {
   constructor(items) {
     this.items = items;
     this.template = "";
@@ -13,9 +13,7 @@ export default class Item {
     };
 
     this.show = () => {
-      // const height = this.query('')
       this.query("#item-container").classList.add('show');
-      // this.query("#item-container").style.height = height;
       this.query('html').style.overflow = "hidden";
       window.scrollTo(0, 0);
     };

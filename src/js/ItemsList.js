@@ -43,4 +43,8 @@ export default class ItemsList {
   getItemsPerPage() {
     return this.itemsPerPage;
   }
+
+  getTotalPages() {
+    return Math.ceil(this.items.length/this.itemsPerPage);
+  }
 };

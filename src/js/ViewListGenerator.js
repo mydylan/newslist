@@ -1,7 +1,8 @@
 export default class ViewListGenerator {
-  constructor() {
+  constructor(itemsListModel) {
     this.container = document.querySelector('#list-container');
     this.noFoundTemplate = '<div class="empty">No Found</div>';
+    this.itemsListModel = itemsListModel;
 
     this.getItemList = (list) => {
       let template = list.map(item => {
