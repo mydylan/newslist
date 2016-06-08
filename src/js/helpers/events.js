@@ -69,7 +69,17 @@ export default function events(app) {
     app.viewItem.destroy();
   });
 
-  query('.page-dropdown').addEventListener('click', ()=> {
+  query('.page-dropdown').addEventListener('click', () => {
     toggleOpen('.page-menu', '.page-dropdown .caret');
+  });
+
+  query('.page-next').addEventListener('click', () => {
+    const list = app.itemsList.getNextPage();
+    if (list) app.viewList.render(list);
+  });
+
+  query('.page-prev').addEventListener('click', () => {
+    const list = app.itemsList.getPrevPage();
+    if (list) app.viewList.render(list);
   });
 }

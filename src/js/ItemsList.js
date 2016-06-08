@@ -1,7 +1,8 @@
 export default class ItemsList {
   constructor(items) {
     this.items = items;
-    this.itemsPerPage = 8;
+    this.itemsPerPage = 3;
+    this.currentPage = 0;
 
     this.buildList = (items, itemsPerPage) => {
       let list = [];
@@ -37,14 +38,41 @@ export default class ItemsList {
 
   setItemsPerPage(itemsPerPage = this.itemsPerPage) {
     this.itemsPerPage = itemsPerPage;
-    return this.buildList(this.items, itemsPerPage);
   }
 
   getItemsPerPage() {
     return this.itemsPerPage;
   }
 
+  setCurrentPage(page) {
+    this.currentPage = page;
+  }
+
+  getCurrentPage() {
+    return this.currentPage + 1;
+  }
+
   getTotalPages() {
     return Math.ceil(this.items.length/this.itemsPerPage);
+  }
+
+  getItemsList(itemsPerPage) {
+    return this.buildList(this.items, this.itemsPerPage)[this.currentPage];
+  }
+
+  getNextPage() {
+    if (this.getCurrentPage() !== this.getTotalPages()) {
+      this.setCurrentPage(this.currentPage + 1);
+      return this.getItemsList(this.itemsPerPage);
+    } else {
+      return;
+    }
+  }
+
+  getPrevPage() {
+    if (this.getCurrentPage() !== 1) {
+      this.setCurrentPage(this.currentPage - 1);
+      return this.getItemsList(this.itemsPerPage);
+    }
   }
 };

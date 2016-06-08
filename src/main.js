@@ -4,4 +4,4 @@ import Style from './stylesheets/app.sass';
 
 
 const app = new App(DATA);
-app.render();
+app.init();

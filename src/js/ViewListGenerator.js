@@ -1,8 +1,12 @@
+import events from './helpers/events';
+
 export default class ViewListGenerator {
-  constructor(itemsListModel) {
+  constructor(app) {
     this.container = document.querySelector('#list-container');
     this.noFoundTemplate = '<div class="empty">No Found</div>';
-    this.itemsListModel = itemsListModel;
+    this.app = app;
+    this.itemsListModel = app.itemsList;
+    this.events = events;
 
     this.getItemList = (list) => {
       let template = list.map(item => {
@@ -24,9 +28,9 @@ export default class ViewListGenerator {
     this.createTemplate = (list) => {
       let template = `
         <div class="pagination-header">
-          <div class="page-total">Page ${1} in ${5}</div>
+          <div class="page-total">Page ${this.itemsListModel.getCurrentPage()} in ${this.itemsListModel.getTotalPages()}</div>
           <div class="page-dropdown">
-            <div>5 per page</div>
+            <div>${this.itemsListModel.getItemsPerPage()} per page</div>
             <div class="caret"></div>
           </div>
           <div class="page-menu">
@@ -40,7 +44,7 @@ export default class ViewListGenerator {
             <div class="caret"></div>
             <p>prev</p>
           </div>
-          <p>Page ${1} in ${5}</p>
+          <p>Page ${this.itemsListModel.getCurrentPage()} in ${this.itemsListModel.getTotalPages()}</p>
           <div class="page-next">
             <p>next</p>
             <div class="caret"></div>
@@ -51,8 +55,8 @@ export default class ViewListGenerator {
     };
 
     this.template = () => {
-      if (this.list.length) {
-        const template = this.createTemplate(this.list[0]);
+      if (this.list) {
+        const template = this.createTemplate(this.list);
         this.container.insertAdjacentHTML('beforeend', template);
       } else {
         this.container.insertAdjacentHTML('beforeend', this.noFoundTemplate);
@@ -68,5 +72,6 @@ export default class ViewListGenerator {
     this.list = list;
     this.destroy();
     this.template();
+    this.events(this.app);
   }
 }
